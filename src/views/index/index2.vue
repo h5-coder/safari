@@ -1,11 +1,7 @@
 <template>
     <div class="">
-        主页
-        <input type="text" v-model="value">
-        <a :href="href">go</a>
-        <br/>
-        <a :href="href2">go</a>
-        <button @click="go">跳转</button>
+        主页1111
+        <p>value: {{value}}</p>
     </div>
 </template>
 <script>
@@ -14,44 +10,39 @@
 
 export default {
     // 组件名
-    name: "index",
+    name: "index2",
     // 实例的数据对象
     data() {
         return {
-            value:666,
-            url:'http://192.168.1.91:8081/#/'
+            value: ""
         };
     },
     // 数组或对象，用于接收来自父组件的数据
     props: {},
     // 计算
-    computed: {
-        href(){
-            return `${this.url}index?value=${this.value}`
-        },
-        href2(){
-            return `${this.url}index2?value=${this.value}`
-        }
-    },
+    computed: {},
     // 方法
     methods: {
-        go() {
-            this.$router.push({
-                path: "index",
-                query: {
-                    value: 8
-                }
-            });
+        init(value){
+            console.log(value)
+            this.value=value
         }
     },
     // 生命周期函数 请求写在created中
-    created() {},
+    created() {
+        console.log(this.$route.query);
+        this.value = this.$route.query.value;
+    },
     beforeMount() {},
     mounted() {},
     // 组件
     components: {},
     // 监视
-    watch: {},
+    watch: {
+        '$route'(to,from){
+            this.init(this.$route.query.value)
+        }
+    },
     // 过滤器
     filters: {},
     // 自定义指令

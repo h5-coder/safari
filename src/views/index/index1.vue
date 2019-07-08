@@ -1,7 +1,7 @@
 <template>
     <div class="">
         主页1111
-        {{valvue}}
+        <p>value: {{value}}</p>
     </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
     // 实例的数据对象
     data() {
         return {
-            valvue:''
+            value: ""
         };
     },
     // 数组或对象，用于接收来自父组件的数据
@@ -25,7 +25,8 @@ export default {
     methods: {},
     // 生命周期函数 请求写在created中
     created() {
-        this.valvue=this.$router.query.valvue
+        console.log(this.$route.query);
+        this.value = this.$route.query.value;
     },
     beforeMount() {},
     mounted() {},
